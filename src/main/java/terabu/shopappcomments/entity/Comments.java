@@ -12,6 +12,7 @@ public class Comments {
     @SequenceGenerator(name = "comments_id", sequenceName = "comments_seq", allocationSize = 1)
     private Long id;
     private String comments;
+    private String email;
     @JoinColumn(name = "userId")
     private Long userId;
 

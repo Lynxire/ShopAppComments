@@ -22,7 +22,7 @@ public class CommentService {
     private final CommentMapper commentMapper;
     private final UserService userService;
     private final UserDataService userDataService;
-    private final KafkaTemplate<String, CommentResponse> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
     public CommentResponse addComment(CommentRequest commentRequest) {
         UserDTO user = userService.findUserById(commentRequest.getUserId());
@@ -30,7 +30,7 @@ public class CommentService {
         comments.setUserId(user.getId());
         commentsRepository.save(comments);
         CommentResponse response = commentMapper.toResponse(comments);
-//        kafkaTemplate.send("my-topic", response);
+        kafkaTemplate.send("my-topic", response);
         return response;
     }
 
