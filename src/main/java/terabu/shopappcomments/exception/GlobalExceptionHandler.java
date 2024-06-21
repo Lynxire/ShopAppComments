@@ -38,7 +38,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<String> handleResourceException(HttpServerErrorException ex) {
         log.error(ex.getMessage(), ex);
         HttpStatusCode statusCode = ex.getStatusCode();
-        return ResponseEntity.status(statusCode).body(ex.getMessage());
+        return ResponseEntity.body(ex.getMessage());
     }
 
 
